@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std; // std::를 붙이지 않기위해 명시한다.
+
+// [타입] [이름];
+
+// char : 1
+// short : 2
+// int : 4
+// __int64 (long long) : 8
+
+int hp = 0;
+int maxHp;
+short xp;
+char ch;
+float speed; // (ex) 3.14
+double speed2; // 더 정밀한 값
+bool playSound; // 참, 거짓
+
+int main() // 동작&실행들은 모두 main에서 처리되어야 한다!
+{
+    maxHp = 200;
+
+    hp = 0xF; //0b1100
+
+    xp = hp; // 16비트인 short에 32비트 값을 넣으면 통과는 되지만 값이 짤린다! -> 타 언어와 다르게 (short)hp같이 명시하는 문구가 필요없기에 주의!!
+    //mp = 20; 선언이 위에서 안되어 실행 X
+
+    xp = 30000;
+    xp += 20000; // 정수 오버플로우 (최대값을 초과해서 더하면 2진법으로 최상위 비트가 1이 되어 음수가 된다.)
+
+    cout << xp <<endl;
+
+    ch = 65; //'A'
+
+    cout << (int)ch << endl;
+
+    speed = 3.5f; // 기본 실수는 double로 바꿔 들어가므로 float는 f를 붙여야한다!
+
+    playSound = false; //0
+    playSound = true; //1
+}
+
+int mp;
