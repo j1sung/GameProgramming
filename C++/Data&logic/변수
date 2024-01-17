@@ -7,7 +7,10 @@ using namespace std; // std::를 붙이지 않기위해 명시한다.
 // short : 2
 // int : 4
 // __int64 (long long) : 8
-// unsigned int a; -> unsigned를 붙이면 -값이 안나오고 0부터 양수값만 지정!!
+// unsigned int a; -> unsigned는 음수는 사용하지않는다는 의미, 0부터 양수값만 사용하므로 음수가 없는만큼 signed에 비해 약 2배의 양수값을 갖게 됨!!
+// signed int a; -> signed는 정수형 변수 중 부호를 갖는 변수 선언(양수, 음수의 구분) 
+// signed는 음수도 표현한다는 의미고, 음수는 2의 보수 체계를 사용하므로 부호를 구별하는 부호비트 MSB가 필요하다.
+// MSB는 보통 가장 왼쪽 첫번째 비트이며, MSB가 0이면 양수, 1이면 음수/ unsigned가 없으면 음수, 양수 다 사용한다는 뜻! 굳이 signed 안붙임!
 
 int hp = 0;
 int maxHp;
