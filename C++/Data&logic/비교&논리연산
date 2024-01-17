@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+int a;
+int b;
+int hp;
+bool result; 
+bool isRich;
+bool isTall;
+
+ 
+
+int main() {
+
+	// #비교 연산
+	// ==
+	// !=
+	// <
+	// <=
+	// >
+	// >=
+
+	hp = 100;
+
+	//result = (hp <= 0);
+
+	// #논리 연산
+	// 참(1) / 거짓(0)
+
+	isRich = true;
+	isTall = true;
+
+	// ! not (0이면 1, 0이 아니면 다시 0으로 만듦, 즉 반전)
+	cout << !isRich << endl;
+
+	// && and
+	result = isRich && isTall; // 양쪽 다 참이어야 참이 나오고 나머진 거짓
+
+	// || or
+	result = isRich || isTall; // 둘중 하나만 참이어도 참, 둘 다 거짓이면 거짓
+}
