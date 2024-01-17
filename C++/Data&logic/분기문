@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+
+int a;
+int b;
+int hp;
+bool result; 
+bool isRich;
+bool isTall;
+
+int choice; // 가위=0 바위=1 보=2
+ 
+
+int main() 
+{
+	// if () { }
+	// if-else
+	// if-else if-else
+
+	hp = 100;
+
+	if (hp <= 0)
+	{
+		cout << "몬스터를 처치하였습니다!" << endl;
+	}
+
+	else
+	{
+		if (hp <= 30)
+		{
+			cout << "몬스터가 도망갑니다!" << endl;
+		}
+		else
+		{
+			cout << "몬스터가 반격했습니다!" << endl;
+		}
+	}
+
+	choice = 1;
+
+	if (choice == 0)
+		cout << "가위를 냈습니다!" << endl;
+	else if (choice == 1)
+		cout << "바위를 냈습니다!" << endl;
+	else
+		cout << "보를 냈습니다!" << endl;
+
+	//switch-case break
+	switch (choice)
+	{
+		case 0:
+			cout << "가위를 냈습니다!" << endl;
+			break; // 대부분 필수 붙이기!
+		case 1:
+			cout << "바위를 냈습니다!" << endl;
+			break;
+		case 2:
+			cout << "보를 냈습니다!" << endl;
+			break;
+		default:
+			cout << "뭘 낸겁니까?" << endl;
+			break;
+			// break는 안붙이면 C++에선 빠져나가지 않고 밑에 케이스로 읽고 break를 만날때까지 반복하다 끝난다!
+	}
+}
