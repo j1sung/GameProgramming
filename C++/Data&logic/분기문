@@ -2,7 +2,7 @@
 using namespace std;
 
 int hp;
-int choice; // 가위=0 바위=1 보=2
+int choice; // 가위=0 바위=1 보=2 
 
 int main() 
 {
