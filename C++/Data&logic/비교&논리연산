@@ -1,14 +1,10 @@
 #include <iostream>
 using namespace std;
 
-int a;
-int b;
 int hp;
 bool result; 
-bool isRich;
+bool isRich; 
 bool isTall;
-
- 
 
 int main() {
 
