@@ -1,15 +1,23 @@
 #include <iostream>
 using namespace std;
 
-int cnt;
- 
-int main() 
-{
-	// 별찍기
-	// 구구단
-	// 간단한 전투
-	// 가위-바위-보
+const int SCISSORS = 0; // 절대 변하지 않는 고유값들은 이렇게 대문자로 변수로 따로 만들어주는게 훨씬 보기좋고 오류를 방지하기 좋음!!
+const int ROCK = 1;     // 특히 절대 변하지 않는다는 의미로 const를 써서 상수로 지정해주는게 좋음!!
+const int PAPER = 2;	// switch문에서 case에 사용되는 값은 정해진 고유값이어야 하므로 const는 필수!
 
+enum  ENUM_GBB
+{                       // 자주 쓰게 될 enum!!
+	GBB_SCISSORS = 0,   // 기본은 0부터 순서대로 고유값을 가지고 =2처럼 지정해주면 그 숫자부터 1씩 늘어나며 가지게 된다. 혹은 직접 값을 지정해도 된다.
+	GBB_ROCK = 1,       // enum은 const 상수로 지정할 값이 너무 많을 경우 사용하게 된다!
+	GBB_PAPER = 2,      // 마지막에 ,쉼표는 붙여도 되고 안붙여도 된다.
+};
+
+#define DEF_SCISSORS 0  // #define으로 정의해서 만든 변수는 모든 값을 지정한 값으로으로 바꿔버린다는 의미인데 enum, const가 있으므로 자주 쓰진 않을 것 같다.
+                        // 전처리 단계에서 컴파일러한테 값을 다 지정한 값으로 바꿔달라고 요청하는 메크로 문법이다.
+int main()
+{
+	// #1 별찍기
+	
 	int N;
 	cin >> N;
 
@@ -51,7 +59,7 @@ int main()
 	// #1
 	for (int i = 0; i < N; i++)
 	{
-		for (int x = N - (i+1); x > 0; --x)
+		for (int x = N - (i + 1); x > 0; --x)
 			cout << " ";
 		for (int y = 0; y < i + 1; y++)
 			cout << "*";
@@ -89,7 +97,7 @@ int main()
 	//  ***
 	//   **
 	//    *
-	
+
 	for (int i = 0; i < N; i++)
 	{
 		for (int j = 0; j < i; j++)
@@ -99,16 +107,19 @@ int main()
 		cout << endl;
 	}
 
+	// #2 구구단
+	
 	// 2*1=2
 	// 2*2=4
 	// ...
 	// 2*9=18
 
 	int num = 2;
-	for (int i = 1; i < 9; i++)
+	for (int i = 1; i <= 9; i++)
 	{
 		cout << num << "*" << i << "=" << num * i << endl;
 	}
+	cout << endl;
 
 	// 2*1=2
 	// 2*2=4
@@ -117,12 +128,183 @@ int main()
 	// ...
 	// 9*9=81
 
-	for (int n=2; n <= 9; n++)
+	for (int n = 2; n <= 9; n++)
 	{
-		for (int j = 1; j <=9; j++)
+		for (int j = 1; j <= 9; j++)
 		{
 			cout << n << "*" << j << "=" << n * j << endl;
 		}
 	}
+	cout << endl;
 
+	// #3 간단한 전투
+	
+	int round = 1; 
+	int hp = 100; // 몬스터 HP
+	int damage = 10; // 플레이어 데미지
+
+	while (true)
+	{
+		// 전투 진행
+		hp -= damage;
+
+		if (hp < 0)
+			hp = 0;
+
+		cout << "Round: " << round << endl << "몬스터 체력: " << hp << endl;
+		
+		if (hp == 0)
+		{
+			cout << "몬스터를 처치하였습니다." << endl;
+			break;
+		}
+			
+		if (round == 5)
+		{
+			cout << "전체 라운드 종료" << endl;
+			break;
+		}
+		round++;
+	}
+
+	// #4 가위-바위-보
+	int choice;
+	int npc;
+	bool flag = false;
+
+	srand(time(0)); // rand() 함수의 seed값을 time(0)이라는 시간함수로 정해주어 매번 시간이 바뀌면서 랜덤하게 값을 가질 수 있게 만듦
+
+	while (true)
+	{
+		// 사용자
+		cout << "가위(0) 바위(1) 보(2) 골라주세요!" << endl;
+		cout << "> ";
+		cin >> choice;
+
+		// 컴퓨터
+		npc = rand() % 3; // 기본 rand()함수는 보통 seed값을 정해주어야 랜덤함수로써 역할을 더 잘 한다. 컴퓨터에서 공식으로 돌리는거라 진짜 랜덤이랑은 거리가 있음.
+		                  //랜덤함수 rand()를 불러서 3으로 나누면 0,1,2 중에 하나로 나머지가 나오므로 npc 선택을 랜덤으로 고를 수 있다!
+
+		/*                // 이중 switch문은 간단한 코드면 괜찮을지 몰라도 나중에 너무 헷갈릴 수 있으니 되도록 지양!
+						  // 되도록이면 if-elseif-else 처럼 나누는 코드를 작성하는게 보기 좋음!!
+		switch (choice) 
+		{
+			case GBB_SCISSORS:
+				switch (npc) 
+				{
+					case GBB_SCISSORS:
+						cout << "User:가위 VS Npc: 가위 = 비겼습니다." << endl;
+						break;
+					case GBB_ROCK:
+						cout << "User:가위 VS Npc: 바위 = 졌습니다ㅠ" << endl;
+						break;
+					case GBB_PAPER:
+						cout << "User:가위 VS Npc: 보 = 이겼습니다!" << endl;
+						flag = true;
+						break;
+					default:
+						break;
+				}
+			break;
+			case GBB_ROCK:
+				switch (npc)
+				{
+				case GBB_SCISSORS:
+					cout << "User:바위 VS Npc: 가위 = 이겼습니다!" << endl;
+					flag = true;
+					break;
+				case GBB_ROCK:
+					cout << "User:바위 VS Npc: 바위 = 비겼습니다." << endl;
+					break;
+				case GBB_PAPER:
+					cout << "User:바위 VS Npc: 보 = 졌습니다ㅠ" << endl;
+					break;
+				default:
+					break;
+				}
+			break;
+			case GBB_PAPER:
+				switch (npc)
+				{
+				case GBB_SCISSORS:
+					cout << "User:보 VS Npc: 가위 = 졌습니다ㅠ" << endl;
+					break;
+				case GBB_ROCK:
+					cout << "User:보 VS Npc: 바위 = 이겼습니다!" << endl;
+					flag = true;
+					break;
+				case GBB_PAPER:
+					cout << "User:보 VS Npc: 보 = 비겼습니다." << endl;
+					break;
+				default:
+					break;
+				}
+			break;
+			default:
+				cout<<"이상한거 내지 마세욧!!"<<endl;
+				break;
+		}
+		*/
+		if (choice == GBB_SCISSORS)
+		{
+			switch (npc)
+			{
+			case GBB_SCISSORS:
+				cout << "User:가위 VS Npc: 가위 = 비겼습니다." << endl;
+				break;
+			case GBB_ROCK:
+				cout << "User:가위 VS Npc: 바위 = 졌습니다ㅠ" << endl;
+				break;
+			case GBB_PAPER:
+				cout << "User:가위 VS Npc: 보 = 이겼습니다!" << endl;
+				flag = true;
+				break;
+			default:
+				break;
+			}
+		}
+		else if (choice == GBB_ROCK)
+		{
+			switch (npc)
+			{
+			case GBB_SCISSORS:
+				cout << "User:바위 VS Npc: 가위 = 이겼습니다!" << endl;
+				flag = true;
+				break;
+			case GBB_ROCK:
+				cout << "User:바위 VS Npc: 바위 = 비겼습니다." << endl;
+				break;
+			case GBB_PAPER:
+				cout << "User:바위 VS Npc: 보 = 졌습니다ㅠ" << endl;
+				break;
+			default:
+				break;
+			}
+		}
+		else
+		{
+			if (choice == GBB_PAPER)
+			{
+				switch (npc)
+				{
+				case GBB_SCISSORS:
+					cout << "User:보 VS Npc: 가위 = 졌습니다ㅠ" << endl;
+					break;
+				case GBB_ROCK:
+					cout << "User:보 VS Npc: 바위 = 이겼습니다!" << endl;
+					flag = true;
+					break;
+				case GBB_PAPER:
+					cout << "User:보 VS Npc: 보 = 비겼습니다." << endl;
+					break;
+				default:
+					break;
+				}
+			}
+			else
+				cout << "이상한거 내지 마세욧!!" << endl;
+		}
+		if(flag == true)
+			break;
+	}
 }
