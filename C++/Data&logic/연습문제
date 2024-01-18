@@ -1,0 +1,128 @@
+#include <iostream>
+using namespace std;
+
+int cnt;
+ 
+int main() 
+{
+	// 별찍기
+	// 구구단
+	// 간단한 전투
+	// 가위-바위-보
+
+	int N;
+	cin >> N;
+
+	// ****
+	// ****
+	// ****
+	// ****
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+	// *
+	// **
+	// ***
+	// ****
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < i + 1; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+	//    *
+	//   **
+	//  ***
+	// ****
+
+	// #1
+	for (int i = 0; i < N; i++)
+	{
+		for (int x = N - (i+1); x > 0; --x)
+			cout << " ";
+		for (int y = 0; y < i + 1; y++)
+			cout << "*";
+		cout << endl;
+	}
+	cout << endl;
+
+	// #2
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N - (i + 1); j++)
+			cout << " ";
+		for (int z = 0; z < i + 1; z++)
+			cout << "*";
+		cout << endl;
+	}
+	cout << endl;
+
+	// ****
+	// ***
+	// **
+	// *
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N - i; j++)
+			cout << "*";
+		for (int z = 0; z < i; z++)
+			cout << " ";
+		cout << endl;
+	}
+	cout << endl;
+
+	// ****
+	//  ***
+	//   **
+	//    *
+	
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < i; j++)
+			cout << " ";
+		for (int z = i; z < N; z++)
+			cout << "*";
+		cout << endl;
+	}
+
+	// 2*1=2
+	// 2*2=4
+	// ...
+	// 2*9=18
+
+	int num = 2;
+	for (int i = 1; i < 9; i++)
+	{
+		cout << num << "*" << i << "=" << num * i << endl;
+	}
+
+	// 2*1=2
+	// 2*2=4
+	// ...
+	// 2*9=18
+	// ...
+	// 9*9=81
+
+	for (int n=2; n <= 9; n++)
+	{
+		for (int j = 1; j <=9; j++)
+		{
+			cout << n << "*" << j << "=" << n * j << endl;
+		}
+	}
+
+}
