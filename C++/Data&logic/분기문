@@ -1,15 +1,8 @@
 #include <iostream>
 using namespace std;
 
-int a;
-int b;
 int hp;
-bool result; 
-bool isRich;
-bool isTall;
-
 int choice; // 가위=0 바위=1 보=2
- 
 
 int main() 
 {

@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+int cnt;
+ 
+int main() 
+{
+	// while
+	// for
+	// do-while
+
+	cnt = 0;
+
+	while (cnt<5)
+	{
+		cout << "Hello World!" << endl;
+		cnt++;
+		// if문으로 break 빠져나옴
+		if (cnt == 3)
+			continue;
+		else if (cnt == 4)
+			break;
+	}
+
+	for (int i=0; i < 100; i++)
+	{
+		for(int j=0; j<100; j++)
+		{
+			cout << "Play Game!" << endl;
+			if (j > 50)
+				break;
+		}
+		break;
+	}
+	
+}
