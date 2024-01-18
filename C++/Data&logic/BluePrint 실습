@@ -1,0 +1,42 @@
+// #1 while 반복문
+#include <iostream>
+using namespace std;
+
+int Hp = 10;
+int healing = 5;
+int MaxHp = 200;
+
+int main()
+{
+	while (Hp < 30)
+	{
+		cout << Hp << endl;
+		cout << "위험수치!!" << endl;
+		Hp += healing;
+	}
+	cout << "안전합니다!" << endl;
+}
+
+// #2 for 반복문
+#include <iostream>
+using namespace std;
+
+int Hp = 10;
+int Healing = 5;
+int MaxHp = 200;
+
+int main()
+{
+	for(int i=0; i<=9; i++)
+	{
+		    cout << Hp << endl;
+			if (Hp < 30)
+			{
+				cout << "위험수치!!" << endl;
+				Hp += Healing;
+			}
+			else
+				break;
+	}
+	cout << "안전합니다!" << endl;
+}
